@@ -1,12 +1,13 @@
 import CollectionView from './CollectionView.jsx'
 import { useCollection } from '../hooks/useCollection.js'
+import { API_BASE_URL } from '../api.js'
 
 function initials(name = '') {
   return name.split(/\s+/).filter(Boolean).slice(0, 2).map((part) => part[0]).join('').toUpperCase() || 'O'
 }
 
 export default function Users() {
-  const collection = useCollection('users')
+  const collection = useCollection(`${API_BASE_URL}/api/users/`)
 
   return (
     <CollectionView

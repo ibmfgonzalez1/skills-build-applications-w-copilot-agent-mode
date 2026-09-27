@@ -1,10 +1,11 @@
 import CollectionView from './CollectionView.jsx'
 import { useCollection } from '../hooks/useCollection.js'
 import { personName, titleCase } from '../format.js'
+import { API_BASE_URL } from '../api.js'
 
 export default function Leaderboard() {
   const period = new Date().toISOString().slice(0, 7)
-  const collection = useCollection('leaderboard', `period=${period}`)
+  const collection = useCollection(`${API_BASE_URL}/api/leaderboard/`, `period=${period}`)
 
   return (
     <CollectionView

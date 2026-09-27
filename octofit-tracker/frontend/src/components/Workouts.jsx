@@ -1,9 +1,10 @@
 import CollectionView from './CollectionView.jsx'
 import { useCollection } from '../hooks/useCollection.js'
 import { titleCase } from '../format.js'
+import { API_BASE_URL } from '../api.js'
 
 export default function Workouts() {
-  const collection = useCollection('workouts')
+  const collection = useCollection(`${API_BASE_URL}/api/workouts/`)
 
   return (
     <CollectionView

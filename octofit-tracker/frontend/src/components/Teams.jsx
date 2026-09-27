@@ -1,9 +1,10 @@
 import CollectionView from './CollectionView.jsx'
 import { useCollection } from '../hooks/useCollection.js'
 import { personName } from '../format.js'
+import { API_BASE_URL } from '../api.js'
 
 export default function Teams() {
-  const collection = useCollection('teams')
+  const collection = useCollection(`${API_BASE_URL}/api/teams/`)
 
   return (
     <CollectionView

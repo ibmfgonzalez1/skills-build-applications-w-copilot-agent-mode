@@ -1,8 +1,8 @@
 const codespaceName = import.meta.env.VITE_CODESPACE_NAME?.trim()
 
 export const API_BASE_URL = codespaceName
-  ? `https://${codespaceName}-8000.app.github.dev/api`
-  : 'http://localhost:8000/api'
+  ? `https://${codespaceName}-8000.app.github.dev`
+  : 'http://localhost:8000'
 
 export function normalizeCollection(payload) {
   const nested = payload?.data
@@ -26,9 +26,9 @@ export function normalizeCollection(payload) {
   }
 }
 
-export async function fetchCollection(component, query = '', signal) {
+export async function fetchCollection(endpoint, query = '', signal) {
   const suffix = query ? `?${query.replace(/^\?/, '')}` : ''
-  const response = await fetch(`${API_BASE_URL}/${component}/${suffix}`, { signal })
+  const response = await fetch(`${endpoint}${suffix}`, { signal })
   const payload = await response.json().catch(() => null)
 
   if (!response.ok) {

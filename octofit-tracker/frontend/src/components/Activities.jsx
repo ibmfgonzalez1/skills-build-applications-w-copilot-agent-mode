@@ -1,9 +1,10 @@
 import CollectionView from './CollectionView.jsx'
 import { useCollection } from '../hooks/useCollection.js'
 import { formatDate, personName, titleCase } from '../format.js'
+import { API_BASE_URL } from '../api.js'
 
 export default function Activities() {
-  const collection = useCollection('activities')
+  const collection = useCollection(`${API_BASE_URL}/api/activities/`)
 
   return (
     <CollectionView

@@ -11,14 +11,14 @@ const initialState = {
   error: '',
 }
 
-export function useCollection(component, query = '') {
-  const key = `${component}?${query}`
+export function useCollection(endpoint, query = '') {
+  const key = `${endpoint}?${query}`
   const [state, setState] = useState(initialState)
 
   useEffect(() => {
     const controller = new AbortController()
 
-    fetchCollection(component, query, controller.signal)
+    fetchCollection(endpoint, query, controller.signal)
       .then((result) => {
         setState({ ...result, key, loading: false, error: '' })
       })
@@ -29,7 +29,7 @@ export function useCollection(component, query = '') {
       })
 
     return () => controller.abort()
-  }, [component, key, query])
+  }, [endpoint, key, query])
 
   return state.key === key ? state : initialState
 }
