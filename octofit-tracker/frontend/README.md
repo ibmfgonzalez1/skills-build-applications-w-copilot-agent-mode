@@ -14,3 +14,13 @@ The React Compiler is not enabled on this template because of its impact on dev 
 ## Expanding the ESLint configuration
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+## API configuration
+
+Define `VITE_CODESPACE_NAME` in `octofit-tracker/frontend/.env.local` when running in Codespaces:
+
+```dotenv
+VITE_CODESPACE_NAME=your-codespace-name
+```
+
+The value is required for the Codespaces API URL `https://<name>-8000.app.github.dev/api`. Restart Vite after changing the file. When the variable is unset, the frontend uses `http://localhost:8000/api` for local development.
