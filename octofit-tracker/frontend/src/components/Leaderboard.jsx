@@ -1,11 +1,15 @@
 import CollectionView from './CollectionView.jsx'
 import { useCollection } from '../hooks/useCollection.js'
 import { personName, titleCase } from '../format.js'
-import { API_BASE_URL } from '../api.js'
+
+const codespaceName = import.meta.env.VITE_CODESPACE_NAME?.trim()
+const leaderboardApiUrl = codespaceName
+  ? `https://${codespaceName}-8000.app.github.dev/api/leaderboard`
+  : 'http://localhost:8000/api/leaderboard'
 
 export default function Leaderboard() {
   const period = new Date().toISOString().slice(0, 7)
-  const collection = useCollection(`${API_BASE_URL}/api/leaderboard/`, `period=${period}`)
+  const collection = useCollection(`${leaderboardApiUrl}/`, `period=${period}`)
 
   return (
     <CollectionView

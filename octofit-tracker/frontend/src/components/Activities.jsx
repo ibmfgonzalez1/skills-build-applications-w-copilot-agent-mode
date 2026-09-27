@@ -1,10 +1,14 @@
 import CollectionView from './CollectionView.jsx'
 import { useCollection } from '../hooks/useCollection.js'
 import { formatDate, personName, titleCase } from '../format.js'
-import { API_BASE_URL } from '../api.js'
+
+const codespaceName = import.meta.env.VITE_CODESPACE_NAME?.trim()
+const activitiesApiUrl = codespaceName
+  ? `https://${codespaceName}-8000.app.github.dev/api/activities`
+  : 'http://localhost:8000/api/activities'
 
 export default function Activities() {
-  const collection = useCollection(`${API_BASE_URL}/api/activities/`)
+  const collection = useCollection(`${activitiesApiUrl}/`)
 
   return (
     <CollectionView

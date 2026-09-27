@@ -1,13 +1,17 @@
 import CollectionView from './CollectionView.jsx'
 import { useCollection } from '../hooks/useCollection.js'
-import { API_BASE_URL } from '../api.js'
+
+const codespaceName = import.meta.env.VITE_CODESPACE_NAME?.trim()
+const usersApiUrl = codespaceName
+  ? `https://${codespaceName}-8000.app.github.dev/api/users`
+  : 'http://localhost:8000/api/users'
 
 function initials(name = '') {
   return name.split(/\s+/).filter(Boolean).slice(0, 2).map((part) => part[0]).join('').toUpperCase() || 'O'
 }
 
 export default function Users() {
-  const collection = useCollection(`${API_BASE_URL}/api/users/`)
+  const collection = useCollection(`${usersApiUrl}/`)
 
   return (
     <CollectionView
